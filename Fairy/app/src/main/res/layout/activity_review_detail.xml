@@ -14,7 +14,16 @@
         android:background="@drawable/headerbackground"
         android:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorLine" />
+
     <ScrollView
+        android:id="@+id/mainview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -69,12 +78,12 @@
                                 android:textColor="@color/black"
                                 android:textSize="14dp" />
 
-
                             <TextView
                                 android:id="@+id/Review_detail_Email"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="bottom"
+                                android:layout_marginLeft="5dp"
                                 android:layout_weight="3"
                                 android:gravity="left|top"
                                 android:text="이메일"
@@ -93,7 +102,6 @@
                                 android:text="공개여부"
                                 android:textColor="@color/colorText2"
                                 android:textSize="12dp" />
-
                         </LinearLayout>
 
                         <LinearLayout
@@ -159,7 +167,6 @@
                                 android:text="INFORMATION"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textSize="16dp" />
-
                         </LinearLayout>
 
                         <View
@@ -256,7 +263,6 @@
                                 android:text="평점"
                                 android:textColor="@color/colorPrimaryDark" />
 
-
                             <RatingBar
                                 android:id="@+id/Review_detail_rating_bar"
                                 style="@style/Base.Widget.AppCompat.RatingBar.Small"
@@ -298,15 +304,9 @@
                         android:text="제목"
                         android:textColor="@color/black"
                         android:textColorHint="@color/colorGray"
-                        android:textSize="20dp"
+                        android:textSize="25dp"
                         android:textStyle="bold|italic" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/colorLine" />
 
                     <TextView
                         android:id="@+id/Review_detail_text"
@@ -360,9 +360,7 @@
                     <ListView
                         android:id="@+id/sns_detail_comment"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"></ListView>
-
-
+                        android:layout_height="10dp"></ListView>
                 </LinearLayout>
 
             </LinearLayout>
@@ -370,13 +368,6 @@
         </LinearLayout>
 
     </ScrollView>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/colorLine" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -403,8 +394,7 @@
             android:id="@+id/comment_submit"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:background="@drawable/card_gradation"
-            android:padding="5dp"
+            android:background="@drawable/comment_background"
             android:text="전송"
             android:textSize="10dp" />
 

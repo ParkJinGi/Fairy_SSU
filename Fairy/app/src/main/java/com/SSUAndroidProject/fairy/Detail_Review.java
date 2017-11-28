@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,7 +75,7 @@ public class Detail_Review extends AppCompatActivity {
     private LinearLayout diary;
     private TextView detail_title;
     private TextView detail_date;
-
+    private ScrollView scrollView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +105,7 @@ public class Detail_Review extends AppCompatActivity {
         comment_text = (EditText) findViewById(R.id.comment_text);
         comment_list = (ListView) findViewById(R.id.sns_detail_comment);
         diary = (LinearLayout)findViewById(R.id.diary_layout);
+        scrollView = (ScrollView)findViewById(R.id.mainview);
         adapter = new CommentListViewAdapter();
         database.getReference()
                 .child("Comment")
@@ -117,8 +119,9 @@ public class Detail_Review extends AppCompatActivity {
                             adapter.addItem(temp);
                         }
                         adapter.notifyDataSetChanged();
-                        comment_list.setSelection(adapter.getCount()-1);
                         setListViewHeightBasedOnChildren(comment_list);
+                        scrollView.fullScroll(View.FOCUS_DOWN);
+                        comment_text.requestFocus();
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
@@ -146,6 +149,14 @@ public class Detail_Review extends AppCompatActivity {
         detail_date.setMarqueeRepeatLimit(-1);
         detail_date.setSelected(true);
         detail_date.setClickable(false);
+
+        comment_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+                comment_text.requestFocus();
+            }
+        });
 
         comment_submit.setOnClickListener(new View.OnClickListener() {
             @Override

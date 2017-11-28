@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.SSUAndroidProject.fairy.Adapter.CommentListViewAdapter;
@@ -52,7 +53,7 @@ public class Detail_SNS extends AppCompatActivity {
     private Context mContext;
     private RatingBar ratingBar;
     private CircleImageView profile;
-
+    private ScrollView scrollView;
     private CommentListViewAdapter adapter;
     private CircleImageView comment_profile;
     private EditText comment_text;
@@ -85,7 +86,7 @@ public class Detail_SNS extends AppCompatActivity {
         Email = (TextView) findViewById(R.id.Review_detail_Email);
         ratingBar = (RatingBar) findViewById(R.id.Review_detail_rating_bar);
         profile = (CircleImageView) findViewById(R.id.Review_detail_Userimg);
-
+        scrollView=(ScrollView)findViewById(R.id.mainview);
         comment_profile = (CircleImageView) findViewById(R.id.comment_profile);
         comment_submit = (Button) findViewById(R.id.comment_submit);
         comment_text = (EditText) findViewById(R.id.comment_text);
@@ -103,8 +104,9 @@ public class Detail_SNS extends AppCompatActivity {
                             adapter.addItem(temp);
                         }
                         adapter.notifyDataSetChanged();
-                        comment_list.setSelection(adapter.getCount()-1);
                         setListViewHeightBasedOnChildren(comment_list);
+                        scrollView.fullScroll(View.FOCUS_DOWN);
+                        comment_text.requestFocus();
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
@@ -133,6 +135,13 @@ public class Detail_SNS extends AppCompatActivity {
         detail_date.setSelected(true);
         detail_date.setClickable(false);
 
+        comment_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+                comment_text.requestFocus();
+            }
+        });
         comment_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
